@@ -10,7 +10,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/subscriptions")
-@CrossOrigin(origins = "http://localhost:3000") // 리액트 포트 허용 (필요시 "*"로 변경)
 public class SubscriptionController {
 
 	private final SubscriptionService service;
