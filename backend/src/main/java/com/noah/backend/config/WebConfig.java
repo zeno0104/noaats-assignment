@@ -9,11 +9,9 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**")
-				// allowedOriginPatterns("*") 대신 실제 허용할 주소들을 명시하는 것이 가장 안전합니다.
-				.allowedOriginPatterns("http://localhost:5173", "https://noahats-assignment.vercel.app",
-						"https://noahats-assignment-*.vercel.app" // Vercel의 미리보기 주소들까지 모두 허용
-				).allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS").allowedHeaders("*").allowCredentials(true)
-				.maxAge(3600); // 브라우저가 CORS 설정을 1시간 동안 기억하게 함
+		registry.addMapping("/**").allowedOriginPatterns("http://localhost:5173", // 로컬 개발 환경
+				"https://*.vercel.app" // ⭐️ 핵심: Vercel의 모든 주소 자동 허용
+		).allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 모든 요청 방식 허용
+				.allowedHeaders("*").allowCredentials(true).maxAge(3600);
 	}
 }
