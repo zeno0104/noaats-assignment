@@ -1,4 +1,4 @@
-package com.noah.backend.config; 
+package com.noah.backend.config; // 패키지명은 본인 프로젝트에 맞게 확인!
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -9,7 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173", "https://*.vercel.app") // 로컬 + Vercel 모든 도메인 허용
+                .allowedOriginPatterns("*") // 핵심! 모든 주소(*) 허용으로 변경
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true);
     }
