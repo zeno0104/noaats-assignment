@@ -1,0 +1,129 @@
+/* 전체 레이아웃 */
+.app-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  color: #6c5ce7; /* 트렌디한 보라색 */
+  margin-bottom: 10px;
+}
+
+main {
+  display: flex;
+  gap: 30px;
+}
+
+.left-panel {
+  flex: 1;
+}
+
+.right-panel {
+  flex: 2;
+}
+
+/* 폼 스타일 */
+.form-container {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button[type="submit"]:hover {
+  background-color: #5b4cc4;
+}
+
+/* 리스트 그리드 */
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+/* 카드 스타일 */
+.sub-card {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.sub-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-header h4 {
+  margin: 0;
+  color: #2d3436;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.cost {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d63031;
+  margin: 5px 0;
+}
+
+.daily-cost {
+  font-size: 0.9rem;
+  color: #0984e3;
+}
+
+.next-date {
+  font-size: 0.8rem;
+  color: #b2bec3;
+}
+
+/* 반응형 (모바일) */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+}

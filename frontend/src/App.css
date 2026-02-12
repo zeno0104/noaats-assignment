@@ -1,0 +1,190 @@
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, sans-serif;
+  color: #2d3436;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #2d3436;
+  margin-bottom: 10px;
+}
+
+main {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.left-panel {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+}
+
+.right-panel {
+  flex: 2;
+}
+
+/* 폼 스타일 */
+.form-container {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f2f6;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #6c5ce7;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #5b4cc4;
+}
+
+/* 리스트 그리드 */
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* 카드 스타일 */
+.sub-card {
+  border: 1px solid #f1f2f6;
+  border-radius: 16px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.sub-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2d3436;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+}
+
+.cost {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2d3436;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+  .left-panel {
+    position: static;
+    width: 100%;
+  }
+}
+/* 총액 배너 스타일 */
+.summary-banner {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);
+}
+
+.summary-banner p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.summary-banner h2 {
+  margin: 10px 0;
+  font-size: 2rem;
+}
+
+.rate-info {
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+/* 수정/삭제 버튼 그룹 */
+.btn-group {
+  display: flex;
+  gap: 5px;
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.edit-btn:hover {
+  opacity: 1;
+}
