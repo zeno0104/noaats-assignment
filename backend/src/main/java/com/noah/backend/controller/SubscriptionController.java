@@ -1,63 +1,76 @@
 package com.noah.backend.controller;
 
 import com.noah.backend.entity.Subscription;
-import com.noah.backend.repository.SubscriptionRepository;
-import lombok.RequiredArgsConstructor;
+import com.noah.backend.service.SubscriptionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/subscriptions")
-@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class SubscriptionController {
 
-	private final SubscriptionRepository subscriptionRepository;
+	private final SubscriptionService service;
+
+	public SubscriptionController(SubscriptionService service) {
+		this.service = service;
+	}
+
+	// ============ CRUD ============
 
 	@GetMapping
-	public List<Subscription> getAllSubscriptions() {
-		return subscriptionRepository.findAll();
+	public List<Subscription> getAll() {
+		return service.findAll();
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Subscription> getById(@PathVariable Long id) {
+		return service.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping
-	public Subscription createSubscription(@RequestBody Subscription subscription) {
-		if (subscription.getCurrency() == null)
-			subscription.setCurrency("KRW");
-		if (subscription.getSharedCount() <= 0)
-			subscription.setSharedCount(1);
-		if (subscription.getCategory() == null)
-			subscription.setCategory("ETC"); // 기본값
-
-		return subscriptionRepository.save(subscription);
+	public Subscription create(@RequestBody Subscription subscription) {
+		return service.save(subscription);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Subscription> updateSubscription(@PathVariable("id") Long id,
-			@RequestBody Subscription updatedSub) {
-		return subscriptionRepository.findById(id).map(sub -> {
-			sub.setServiceName(updatedSub.getServiceName());
-			sub.setCost(updatedSub.getCost());
-			sub.setCurrency(updatedSub.getCurrency());
-			sub.setBillingCycle(updatedSub.getBillingCycle());
-			sub.setNextBillingDate(updatedSub.getNextBillingDate());
-			sub.setUsageHours(updatedSub.getUsageHours());
-
-			int count = updatedSub.getSharedCount() <= 0 ? 1 : updatedSub.getSharedCount();
-			sub.setSharedCount(count);
-
-			sub.setCategory(updatedSub.getCategory()); // 카테고리 수정
-
-			return ResponseEntity.ok(subscriptionRepository.save(sub));
+	public ResponseEntity<Subscription> update(@PathVariable Long id, @RequestBody Subscription subscription) {
+		return service.findById(id).map(existing -> {
+			subscription.setId(id);
+			return ResponseEntity.ok(service.save(subscription));
 		}).orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteSubscription(@PathVariable("id") Long id) {
-		if (subscriptionRepository.existsById(id)) {
-			subscriptionRepository.deleteById(id);
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		if (service.findById(id).isPresent()) {
+			service.deleteById(id);
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
+	}
+
+	// ============ 분석 API ============
+
+	/** 전체 ROI 분석 */
+	@GetMapping("/analysis")
+	public List<Map<String, Object>> getAnalysis() {
+		return service.analyzeAll();
+	}
+
+	/** 개별 구독 ROI 분석 */
+	@GetMapping("/{id}/analysis")
+	public ResponseEntity<Map<String, Object>> getSubscriptionAnalysis(@PathVariable Long id) {
+		return service.findById(id).map(sub -> ResponseEntity.ok(service.analyzeSubscription(sub)))
+				.orElse(ResponseEntity.notFound().build());
+	}
+
+	/** 대시보드 요약 데이터 */
+	@GetMapping("/dashboard")
+	public Map<String, Object> getDashboard() {
+		return service.getDashboard();
 	}
 }
