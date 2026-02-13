@@ -147,3 +147,4 @@ root/
 | 주제 | 6. 구독 서비스 관리 (구독 비용 분석, 공유 최적화, 이용률) |
 | Frontend 배포 | https://noahats-assignment.vercel.app/ |
 | Backend 배포 | https://noahats-assignment.onrender.com |
+| Notion | https://stream-chopper-e5d.notion.site/_-3043121c234280309894dc41939d9dc0 |
