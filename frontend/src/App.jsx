@@ -97,24 +97,6 @@ function App() {
             </h1>
             <p className="app-subtitle">내 구독, 진짜 쓸 만큼 쓰고 있을까?</p>
           </div>
-          {dashboard && (
-            <div className="header-stats">
-              <div className="header-chip">
-                <span className="chip-label">월 구독비</span>
-                <span className="chip-value">
-                  {dashboard.totalMonthlySpending?.toLocaleString()}원
-                </span>
-              </div>
-              <div className="header-chip chip-accent">
-                <span className="chip-label">절약 가능</span>
-                <span className="chip-value">
-                  {dashboard.totalPossibleAnnualSavings
-                    ? `연 ${dashboard.totalPossibleAnnualSavings.toLocaleString()}원`
-                    : "—"}
-                </span>
-              </div>
-            </div>
-          )}
         </div>
       </header>
 

@@ -52,38 +52,42 @@ export default function Dashboard({ dashboard, analyses }) {
 
   return (
     <div className="dashboard">
-      <div className="dash-summary">
+      {/* 요약 카드 50:50 그리드 */}
+      <div
+        className="dash-summary"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "1rem",
+          marginBottom: "1.5rem",
+        }}
+      >
         <div className="dash-card">
-          <div className="dash-card-label">월 구독비 합계</div>
+          <div className="dash-card-label">월 구독비 합계 (환산액 포함)</div>
           <div className="dash-card-value">
             {dashboard.totalMonthlySpending?.toLocaleString()}원
           </div>
           <div className="dash-card-sub">
-            연간 {dashboard.totalAnnualSpending?.toLocaleString()}원
+            연간 예상 지출: {dashboard.totalAnnualSpending?.toLocaleString()}원
           </div>
         </div>
-        <div className="dash-card accent">
-          <div className="dash-card-label">공유 절약 가능액</div>
-          <div className="dash-card-value">
-            {dashboard.totalPossibleAnnualSavings?.toLocaleString()}원
-          </div>
-          <div className="dash-card-sub">파티원 모집 시 (연간)</div>
-        </div>
+
         <div className="dash-card">
-          <div className="dash-card-label">구독 개수</div>
+          <div className="dash-card-label">총 구독 서비스</div>
           <div className="dash-card-value">{dashboard.subscriptionCount}개</div>
           <div className="dash-card-sub">
-            평균{" "}
+            평균 단가:{" "}
             {dashboard.totalMonthlySpending
               ? Math.round(
                   dashboard.totalMonthlySpending / dashboard.subscriptionCount
                 ).toLocaleString()
               : 0}
-            원
+            원 / 개
           </div>
         </div>
       </div>
 
+      {/* 신호등 상태 요약 */}
       <div className="signal-bars">
         <div className="signal-bar">
           <div className="signal-indicator green">🟢</div>
@@ -109,6 +113,7 @@ export default function Dashboard({ dashboard, analyses }) {
       </div>
 
       <div className="dash-grid">
+        {/* 카테고리별 지출 */}
         <div className="dash-section">
           <div className="dash-section-title">
             📂 카테고리별 지출 (원화 기준)
@@ -137,17 +142,18 @@ export default function Dashboard({ dashboard, analyses }) {
           ))}
         </div>
 
+        {/* 해지 권장 및 베스트 활용 */}
         <div className="dash-section">
           {redItems.length > 0 && (
             <>
-              <div className="dash-section-title">🚨 해지 검토 (목표 미달)</div>
+              <div className="dash-section-title">🚨 해지 검토 (이용 저조)</div>
               {redItems.map((item) => (
                 <div key={item.id} className="alert-item red">
                   <div className="alert-name">{item.name}</div>
                   <div className="alert-detail">
-                    월 {item.monthlyPrice.toLocaleString()}원 ·
+                    월 {item.convertedPrice?.toLocaleString()}원 ·
                     {item.usageCount === 0
-                      ? " 미사용"
+                      ? " 이번 달 미사용"
                       : ` 목표 달성률 ${item.score}%`}
                   </div>
                 </div>
@@ -159,7 +165,7 @@ export default function Dashboard({ dashboard, analyses }) {
             <>
               <div
                 className="dash-section-title"
-                style={{ marginTop: redItems.length > 0 ? "1rem" : 0 }}
+                style={{ marginTop: redItems.length > 0 ? "1.5rem" : 0 }}
               >
                 🏆 베스트 활용
               </div>
@@ -167,7 +173,7 @@ export default function Dashboard({ dashboard, analyses }) {
                 <div key={item.id} className="alert-item green">
                   <div className="alert-name">{item.name}</div>
                   <div className="alert-detail">
-                    목표 달성률 {item.score}% · 1{item.usageUnit}당{" "}
+                    목표 달성률 {item.score}% · {item.usageUnit}당 체감가{" "}
                     {item.costPerUse?.toLocaleString()}원
                   </div>
                 </div>

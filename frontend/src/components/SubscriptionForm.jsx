@@ -30,7 +30,6 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
   const [rate, setRate] = useState(1446.2);
 
   useEffect(() => {
-    // 실시간 환율 API 호출
     fetch("https://api.exchangerate-api.com/v4/latest/USD")
       .then((res) => res.json())
       .then((data) => {
@@ -39,10 +38,7 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
       .catch(() => {});
 
     if (initialData) {
-      setForm({
-        ...initialData,
-        currency: initialData.currency || "KRW",
-      });
+      setForm({ ...initialData, currency: initialData.currency || "KRW" });
     }
   }, [initialData]);
 
@@ -66,17 +62,6 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
     }));
   };
 
-  const submit = (e) => {
-    e.preventDefault();
-    onSave({
-      ...form,
-      id: initialData?.id,
-      monthlyPrice: Number(form.monthlyPrice) || 0,
-      targetUsageCount: Number(form.targetUsageCount) || 0,
-    });
-  };
-
-  // 실시간 환산 미리보기
   const wonPreview =
     form.currency === "USD" && form.monthlyPrice
       ? Math.round(form.monthlyPrice * rate).toLocaleString()
@@ -91,7 +76,12 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
         </button>
       </div>
 
-      <form onSubmit={submit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSave(form);
+        }}
+      >
         <div className="form-section">
           <div className="form-section-title">기본 정보</div>
           <div className="form-grid">
@@ -146,15 +136,6 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
                 </span>
               )}
             </div>
-            <div className="form-group full">
-              <label>구독 시작일</label>
-              <input
-                type="date"
-                name="startDate"
-                value={form.startDate}
-                onChange={set}
-              />
-            </div>
           </div>
         </div>
 
@@ -168,7 +149,6 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
                 name="usageCount"
                 value={form.usageCount}
                 onChange={set}
-                placeholder="실제 사용량"
               />
             </div>
             <div className="form-group">
@@ -189,14 +169,13 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
                 value={form.targetUsageCount}
                 onChange={set}
                 required
-                placeholder="예: 최소 4편"
               />
             </div>
           </div>
         </div>
 
         <div className="form-section">
-          <div className="form-section-title">공유 정보 (절약 계산용)</div>
+          <div className="form-section-title">공유 정보</div>
           <div className="form-grid">
             <div className="form-group">
               <label>최대 공유 인원</label>
@@ -205,7 +184,6 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
                 name="maxSharedUsers"
                 value={form.maxSharedUsers}
                 onChange={set}
-                min="1"
               />
             </div>
             <div className="form-group">
@@ -215,7 +193,6 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
                 name="currentSharedUsers"
                 value={form.currentSharedUsers}
                 onChange={set}
-                min="1"
               />
             </div>
             <div className="form-group full">
