@@ -39,7 +39,6 @@ GuDokCheck은 사용자의 **주관적인 목표 사용량**과 실제 이용 �
 | ORM | Spring Data JPA |
 | External API | ExchangeRate-API (실시간 환율) |
 
-> Lombok을 사용하지 않고 표준 Java 코드로 작성되었습니다.
 
 ### Frontend
 | 항목 | 기술 |
