@@ -1,6 +1,6 @@
-package com.noah.backend.repository;
+package com.noa.backend.repository;
 
-import com.noah.backend.entity.Subscription;
+import com.noa.backend.entity.Subscription;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

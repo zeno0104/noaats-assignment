@@ -1,4 +1,4 @@
-package com.noah.backend.entity;
+package com.noa.backend.entity;
 
 import jakarta.persistence.*;
 

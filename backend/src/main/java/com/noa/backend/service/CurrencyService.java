@@ -1,4 +1,4 @@
-package com.noah.backend.service;
+package com.noa.backend.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

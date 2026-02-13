@@ -1,4 +1,4 @@
-package com.noah.backend.config;
+package com.noa.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

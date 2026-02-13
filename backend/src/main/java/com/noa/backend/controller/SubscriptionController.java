@@ -1,7 +1,7 @@
-package com.noah.backend.controller;
+package com.noa.backend.controller;
 
-import com.noah.backend.entity.Subscription;
-import com.noah.backend.service.SubscriptionService;
+import com.noa.backend.entity.Subscription;
+import com.noa.backend.service.SubscriptionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

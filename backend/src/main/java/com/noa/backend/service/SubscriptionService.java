@@ -1,7 +1,7 @@
-package com.noah.backend.service;
+package com.noa.backend.service;
 
-import com.noah.backend.entity.Subscription;
-import com.noah.backend.repository.SubscriptionRepository;
+import com.noa.backend.entity.Subscription;
+import com.noa.backend.repository.SubscriptionRepository;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;

@@ -30,22 +30,24 @@ GuDokCheck은 사용자의 **주관적인 목표 사용량**과 실제 이용 �
 ## 🛠 기술 스택
 
 ### Backend
-| 항목 | 기술 |
-|------|------|
-| Framework | Spring Boot 3.4.2 |
-| Language | Java 21 |
-| Build Tool | Gradle |
-| Database | H2 (In-Memory) |
-| ORM | Spring Data JPA |
+
+| 항목         | 기술                           |
+| ------------ | ------------------------------ |
+| Framework    | Spring Boot 3.4.2              |
+| Language     | Java 21                        |
+| Build Tool   | Gradle                         |
+| Database     | H2 (In-Memory)                 |
+| ORM          | Spring Data JPA                |
 | External API | ExchangeRate-API (실시간 환율) |
 
 > Lombok을 사용하지 않고 표준 Java 코드로 작성되었습니다.
 
 ### Frontend
-| 항목 | 기술 |
-|------|------|
-| Library | React 19 |
-| Bundler | Vite |
+
+| 항목    | 기술                  |
+| ------- | --------------------- |
+| Library | React 19              |
+| Bundler | Vite                  |
 | Styling | CSS3 (Fintech Design) |
 
 ---
@@ -61,10 +63,11 @@ Eclipse에서 `File` → `Import` → `Existing Gradle Project`를 선택합니�
 
 **실행**
 
-`src/main/java/com/noah/backend/BackendApplication.java` 파일을 우클릭하여
+`src/main/java/com/noa/backend/BackendApplication.java` 파일을 우클릭하여
 `Run As` → `Spring Boot App`으로 실행합니다.
 
 **H2 Console**
+
 - 접속: http://localhost:8080/h2-console
 - JDBC URL: `jdbc:h2:mem:subscriptiondb`
 - User Name: `sa` / Password: (비워둠)
@@ -80,6 +83,7 @@ npm run dev
 브라우저에서 http://localhost:5173 접속 후 서비스를 이용합니다.
 
 🚨 주의사항
+
 <pre>만약 로컬에서 기능이 제대로 동작하지 않는다면 
 App.jsx에서 9번 줄에 있는 const API_BASE에 http://localhost:8080/api/subscriptions만 넣어주시면 됩니다!</pre>
 
@@ -93,11 +97,11 @@ App.jsx에서 9번 줄에 있는 const API_BASE에 http://localhost:8080/api/sub
 활용 지수(%) = (실제 사용량 / 사용자 설정 목표 사용량) × 100
 ```
 
-| 신호 | 조건 | 의미 |
-|------|------|------|
-| 🟢 GREEN | 활용 지수 ≥ 100% | 적극 활용 중 |
-| 🟡 YELLOW | 50% ≤ 활용 지수 < 100% | 적정 수준 |
-| 🔴 RED | 활용 지수 < 50% 또는 미사용 | 활용도 낮음 |
+| 신호      | 조건                        | 의미         |
+| --------- | --------------------------- | ------------ |
+| 🟢 GREEN  | 활용 지수 ≥ 100%            | 적극 활용 중 |
+| 🟡 YELLOW | 50% ≤ 활용 지수 < 100%      | 적정 수준    |
+| 🔴 RED    | 활용 지수 < 50% 또는 미사용 | 활용도 낮음  |
 
 ### 실시간 환율 변환
 
@@ -117,7 +121,7 @@ App.jsx에서 9번 줄에 있는 const API_BASE에 http://localhost:8080/api/sub
 ```
 root/
 ├── backend/
-│   ├── src/main/java/com/noah/backend/
+│   ├── src/main/java/com/noa/backend/
 │   │   ├── controller/      # REST API (대시보드, 분석, CRUD)
 │   │   ├── service/
 │   │   │   ├── SubscriptionService.java   # 활용 지수 분석 엔진
@@ -143,8 +147,8 @@ root/
 
 ## 📮 과제 제출 정보
 
-| 항목 | 내용 |
-|------|------|
-| 주제 | 6. 구독 서비스 관리 (구독 비용 분석, 공유 최적화, 이용률) |
-| Frontend 배포 | https://noahats-assignment-8kbi.vercel.app/ |
-| Backend 배포 | https://noahats-assignment.onrender.com |
+| 항목          | 내용                                                      |
+| ------------- | --------------------------------------------------------- |
+| 주제          | 6. 구독 서비스 관리 (구독 비용 분석, 공유 최적화, 이용률) |
+| Frontend 배포 | https://noaats-assignment-8kbi.vercel.app/                |
+| Backend 배포  | https://noaats-assignment.onrender.com                    |
