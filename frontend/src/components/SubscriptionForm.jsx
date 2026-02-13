@@ -357,9 +357,6 @@ export default function SubscriptionForm({ initialData, onSave, onCancel }) {
         </div>
 
         <div className="form-actions">
-          <button type="button" className="btn btn-outline" onClick={onCancel}>
-            취소
-          </button>
           <button type="submit" className="btn btn-primary">
             {initialData ? "수정 완료" : "추가하기"}
           </button>
