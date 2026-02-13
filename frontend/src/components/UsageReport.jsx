@@ -6,7 +6,7 @@ const SIG = {
   RED: { emoji: "🔴", label: "활용도 낮음", cls: "red" },
 };
 
-export default function ROIAnalysis({ analyses }) {
+export default function UsageReport({ analyses }) {
   const sorted = useMemo(
     () => [...analyses].sort((a, b) => b.score - a.score),
     [analyses]

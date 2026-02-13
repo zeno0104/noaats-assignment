@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from "react";
 import Dashboard from "./components/Dashboard";
 import SubscriptionList from "./components/SubscriptionList";
 import SubscriptionForm from "./components/SubscriptionForm";
-import ROIAnalysis from "./components/ROIAnalysis";
+import UsageReport from "./components/UsageReport";
 import ShareSimulator from "./components/ShareSimulator";
 import "./App.css";
 // const API_BASE =
-//   import.meta.env.VITE_API_URL || "http://localhost:8080/api/subscriptions";
+import.meta.env.VITE_API_URL || "http://localhost:8080/api/subscriptions";
 // 🚨 주의: 테스트할 때는 반드시 localhost를 사용해야 새 기능이 먹힙니다!
 const API_BASE = "http://localhost:8080/api/subscriptions";
 // 기존 코드: import.meta.env.VITE_API_URL || ... (이거 잠시 주석 처리하세요)
@@ -93,7 +93,7 @@ function App() {
         <div className="header-inner">
           <div className="header-left">
             <h1 className="app-title">
-              <span className="logo-icon">◎</span> SubScope
+              <span className="logo-icon">◎</span> GuDokCheck
             </h1>
             <p className="app-subtitle">내 구독, 진짜 쓸 만큼 쓰고 있을까?</p>
           </div>
@@ -162,14 +162,14 @@ function App() {
                   />
                 </>
               )}
-              {activeTab === "analysis" && <ROIAnalysis analyses={analyses} />}
+              {activeTab === "analysis" && <UsageReport analyses={analyses} />}
               {activeTab === "share" && <ShareSimulator analyses={analyses} />}
             </>
           )}
         </main>
       </div>
 
-      <footer className="app-footer">SubScope · 구독 가성비 판독기</footer>
+      <footer className="app-footer">GuDokCheck</footer>
     </div>
   );
 }
