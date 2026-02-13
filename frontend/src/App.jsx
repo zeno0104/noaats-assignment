@@ -6,10 +6,11 @@ import UsageReport from "./components/UsageReport";
 import ShareSimulator from "./components/ShareSimulator";
 import "./App.css";
 // const API_BASE =
-import.meta.env.VITE_API_URL || "http://localhost:8080/api/subscriptions";
-// 🚨 주의: 테스트할 때는 반드시 localhost를 사용해야 새 기능이 먹힙니다!
-const API_BASE = "http://localhost:8080/api/subscriptions";
-// 기존 코드: import.meta.env.VITE_API_URL || ... (이거 잠시 주석 처리하세요)
+const API_BASE =
+  import.meta.env.VITE_API_URL || "http://localhost:8080/api/subscriptions";
+
+// 만약 로컬에서 기능이 제대로 동작하지 않는다면
+// const API_BASE에 http://localhost:8080/api/subscriptions만 넣어주시면 됩니다!
 function App() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [subscriptions, setSubscriptions] = useState([]);
